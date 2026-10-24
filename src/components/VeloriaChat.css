@@ -1,0 +1,916 @@
+/* ============================================================
+   VELORIA
+   CHAT
+   ============================================================ */
+
+.veloria-trigger {
+  position: relative;
+
+  height: 38px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 13px;
+
+  border: 1px solid #d9cec1;
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffdf9 0%,
+      #f8f2ea 100%
+    );
+
+  color: #241f1b;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 2px 7px
+      rgba(36, 31, 27, 0.04);
+
+  transition:
+    transform 0.2s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      ),
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.veloria-trigger:hover {
+  transform: translateY(-1px);
+
+  border-color: #bca994;
+
+  background: #f7f0e8;
+
+  box-shadow:
+    0 6px 18px
+      rgba(36, 31, 27, 0.09);
+}
+
+.veloria-trigger:active {
+  transform:
+    translateY(0);
+}
+
+.veloria-trigger-open {
+  background: #241f1b;
+  border-color: #241f1b;
+  color: #f4efe7;
+
+  box-shadow:
+    0 6px 20px
+      rgba(36, 31, 27, 0.16);
+}
+
+.veloria-trigger-icon {
+  width: 19px;
+  height: 19px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: #241f1b;
+  color: #f4efe7;
+
+  font-size: 10px;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.veloria-trigger-open
+.veloria-trigger-icon {
+  background: #f4efe7;
+  color: #241f1b;
+}
+
+.veloria-trigger-text {
+  letter-spacing: -0.1px;
+}
+
+.veloria-status-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #80654d;
+
+  box-shadow:
+    0 0 0 3px
+      rgba(
+        128,
+        101,
+        77,
+        0.09
+      );
+}
+
+.veloria-status-thinking {
+  animation:
+    veloriaPulse
+    1s ease
+    infinite;
+}
+
+@keyframes veloriaPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+}
+
+
+/* ============================================================
+   PANEL
+   ============================================================ */
+
+.veloria-panel {
+  position: fixed;
+
+  top: 88px;
+  right: 28px;
+
+  z-index: 9999;
+
+  width: 390px;
+  height: min(
+    650px,
+    calc(100vh - 110px)
+  );
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border: 1px solid #ded4c9;
+  border-radius: 18px;
+
+  background: #fffdf9;
+
+  box-shadow:
+    0 28px 80px
+      rgba(
+        36,
+        31,
+        27,
+        0.18
+      ),
+    0 8px 24px
+      rgba(
+        36,
+        31,
+        27,
+        0.08
+      );
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform:
+    translateY(-10px)
+    scale(0.97);
+
+  transform-origin:
+    top right;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.22s ease,
+    visibility 0.22s ease,
+    transform 0.28s
+      cubic-bezier(
+        0.22,
+        1,
+        0.36,
+        1
+      );
+}
+
+.veloria-panel-open {
+  opacity: 1;
+  visibility: visible;
+
+  transform:
+    translateY(0)
+    scale(1);
+
+  pointer-events: auto;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.veloria-header {
+  height: 68px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    0 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #241f1b 0%,
+      #302821 100%
+    );
+
+  color: #f4efe7;
+}
+
+.veloria-header-left {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.veloria-avatar {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #9b7b5d,
+      #624b38
+    );
+
+  color: #fffaf4;
+
+  font-size: 16px;
+
+  box-shadow:
+    inset 0 1px 0
+      rgba(
+        255,
+        255,
+        255,
+        0.18
+      );
+}
+
+.veloria-header-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.veloria-header-info strong {
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: -0.2px;
+}
+
+.veloria-header-info span {
+  color: #a99a8d;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.veloria-header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+}
+
+.veloria-header-button {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+
+  color: #cfc4b9;
+
+  font-size: 17px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.veloria-header-button:hover {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.13
+    );
+
+  color: #ffffff;
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* ============================================================
+   SUBHEADER
+   ============================================================ */
+
+.veloria-subheader {
+  height: 31px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding:
+    0 16px;
+
+  border-bottom:
+    1px solid #eee6dc;
+
+  background: #faf7f2;
+
+  color: #8a7d70;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.veloria-live-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #80654d;
+
+  box-shadow:
+    0 0 0 3px
+      rgba(
+        128,
+        101,
+        77,
+        0.08
+      );
+}
+
+
+/* ============================================================
+   MESSAGES
+   ============================================================ */
+
+.veloria-messages {
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding:
+    18px 14px 20px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(
+        128,
+        101,
+        77,
+        0.055
+      ),
+      transparent 38%
+    ),
+    #fffdf9;
+
+  scrollbar-width: thin;
+  scrollbar-color:
+    #d8cbbd
+    transparent;
+}
+
+.veloria-messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+.veloria-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.veloria-messages::-webkit-scrollbar-thumb {
+  background: #d8cbbd;
+  border-radius: 10px;
+}
+
+.veloria-message-row {
+  display: flex;
+
+  width: 100%;
+
+  margin-bottom: 14px;
+
+  animation:
+    veloriaMessageIn
+    0.24s
+    cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+@keyframes veloriaMessageIn {
+  from {
+    opacity: 0;
+    transform:
+      translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0);
+  }
+}
+
+.veloria-message-assistant {
+  justify-content: flex-start;
+
+  gap: 8px;
+}
+
+.veloria-message-user {
+  justify-content: flex-end;
+}
+
+.veloria-small-avatar {
+  width: 24px;
+  height: 24px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2px;
+
+  border-radius: 7px;
+
+  background: #241f1b;
+
+  color: #f4efe7;
+
+  font-size: 9px;
+}
+
+.veloria-message-content {
+  max-width: 80%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.veloria-bubble {
+  padding:
+    10px 12px;
+
+  border-radius: 13px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  line-height: 1.55;
+
+  white-space: pre-wrap;
+
+  word-break: break-word;
+}
+
+.veloria-message-assistant
+.veloria-bubble {
+  border:
+    1px solid #e6ddd3;
+
+  border-top-left-radius: 4px;
+
+  background: #f8f4ee;
+
+  color: #3d342d;
+}
+
+.veloria-message-user
+.veloria-bubble {
+  border:
+    1px solid #241f1b;
+
+  border-top-right-radius: 4px;
+
+  background: #241f1b;
+
+  color: #f8f3ec;
+}
+
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.veloria-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.veloria-action-button {
+  min-height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding:
+    0 10px;
+
+  border:
+    1px solid #d8cabb;
+
+  border-radius: 9px;
+
+  background: #fffdf9;
+
+  color: #604c3b;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.veloria-action-button:hover {
+  background: #f5eee6;
+
+  border-color: #bda58d;
+
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 5px 14px
+      rgba(
+        36,
+        31,
+        27,
+        0.06
+      );
+}
+
+.veloria-action-button span {
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   TYPING
+   ============================================================ */
+
+.veloria-typing {
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  padding:
+    0 12px;
+
+  border:
+    1px solid #e6ddd3;
+
+  border-radius: 12px;
+
+  border-top-left-radius: 4px;
+
+  background: #f8f4ee;
+}
+
+.veloria-typing span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #80654d;
+
+  animation:
+    veloriaTyping
+    1.2s
+    infinite ease-in-out;
+}
+
+.veloria-typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.veloria-typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes veloriaTyping {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+    transform:
+      translateY(-3px);
+  }
+}
+
+
+/* ============================================================
+   INPUT
+   ============================================================ */
+
+.veloria-input-area {
+  flex-shrink: 0;
+
+  padding:
+    10px 12px 11px;
+
+  border-top:
+    1px solid #e8dfd5;
+
+  background: #fffdf9;
+}
+
+.veloria-input-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: flex-end;
+
+  min-height: 44px;
+
+  border:
+    1px solid #dcd1c5;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.veloria-input-wrapper:focus-within {
+  border-color: #9c8065;
+
+  box-shadow:
+    0 0 0 3px
+      rgba(
+        128,
+        101,
+        77,
+        0.08
+      );
+}
+
+.veloria-input-wrapper textarea {
+  width: 100%;
+
+  min-height: 42px;
+  max-height: 110px;
+
+  resize: none;
+
+  padding:
+    12px 48px 10px 12px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #241f1b;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  line-height: 1.45;
+}
+
+.veloria-input-wrapper textarea::placeholder {
+  color: #a29588;
+}
+
+.veloria-send-button {
+  position: absolute;
+
+  right: 6px;
+  bottom: 6px;
+
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #241f1b;
+
+  color: #f4efe7;
+
+  font-size: 17px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.veloria-send-button:hover:not(:disabled) {
+  transform:
+    translateY(-1px);
+
+  background: #3a3028;
+}
+
+.veloria-send-button:disabled {
+  opacity: 0.28;
+
+  cursor: default;
+}
+
+.veloria-input-hint {
+  margin-top: 6px;
+
+  padding-left: 2px;
+
+  color: #a29588;
+
+  font-size: 8px;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 600px) {
+  .veloria-panel {
+    top: 74px;
+    right: 10px;
+    left: 10px;
+
+    width: auto;
+
+    height:
+      calc(
+        100vh - 86px
+      );
+
+    border-radius: 16px;
+  }
+
+  .veloria-trigger-text {
+    display: none;
+  }
+
+  .veloria-trigger {
+    width: 38px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .veloria-panel {
+    right: 0;
+    left: 0;
+
+    top: 70px;
+
+    height:
+      calc(
+        100vh - 70px
+      );
+
+    border-radius:
+      16px 16px 0 0;
+  }
+}
+
+.veloria-message-content strong {
+  font-weight: 700;
+}
+
+.veloria-message-content p {
+  margin: 0 0 8px 0;
+}
+
+.veloria-message-content p:last-child {
+  margin-bottom: 0;
+}
+
+.veloria-message-content ul,
+.veloria-message-content ol {
+  margin: 8px 0;
+  padding-left: 22px;
+}
+
+.veloria-message-content li {
+  margin-bottom: 5px;
+}
+
+.veloria-message-content code {
+  font-family: monospace;
+}
+
+.veloria-message-content h1,
+.veloria-message-content h2,
+.veloria-message-content h3 {
+  margin: 8px 0;
+}
